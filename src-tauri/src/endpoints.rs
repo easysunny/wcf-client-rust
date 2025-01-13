@@ -294,7 +294,7 @@ pub fn get_routes(
         .or(msgtypes(wechat.clone()))
         .or(pyq(wechat.clone()))
         .or(sendtext(wechat.clone()))
-        .or(sendxml(wechat.clone()))
+        // .or(sendxml(wechat.clone()))
         .or(sendimage(wechat.clone()))
         .or(sendfile(wechat.clone()))
         .or(sendrichtext(wechat.clone()))

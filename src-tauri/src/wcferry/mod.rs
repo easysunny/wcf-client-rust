@@ -421,6 +421,10 @@ impl WeChat {
         execute_wcf_command!(self, Functions::FuncSendTxt, ReqMsg::Txt(text), Status 0, "发送文本消息")
     }
 
+    pub fn send_xml(&self, text: wcf::XmlMsg) -> Result<bool, Box<dyn std::error::Error>> {
+        execute_wcf_command!(self, Functions::FuncSendXml, ReqMsg::Xml(text), Status 0, "发送文本消息")
+    }
+
     pub fn send_image(&self, img: wcf::PathMsg) -> Result<bool, Box<dyn std::error::Error>> {
         execute_wcf_command!(self, Functions::FuncSendImg, ReqMsg::File(img), Status 0, "发送图片消息")
     }

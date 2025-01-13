@@ -2,7 +2,7 @@ use crate::wcferry::{
     wcf::{
         AttachMsg, AudioMsg, DbNames, DbQuery, DbTable, DbTables, DecPath, ForwardMsg, MemberMgmt,
         MsgTypes, PatMsg, PathMsg, RichText, RpcContact, RpcContacts, TextMsg, Transfer, UserInfo,
-        Verification,
+        Verification,XmlMsg,
     },
     SelfInfo, WeChat,
 };
@@ -464,6 +464,22 @@ pub async fn refresh_pyq(query: Id, wechat: Arc<Mutex<WeChat>>) -> Result<Json, 
 pub async fn send_text(text: TextMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json, Infallible> {
     wechat_api_handler!(wechat, WeChat::send_text, text, "发送文本消息")
 }
+
+
+/// 发送xml消息
+#[utoipa::path(
+    post,
+    tag = "WCF",
+    path = "/xml",
+    request_body = XmlMsg,
+    responses(
+        (status = 200, body = ApiResponseBool, description = "发送文本消息")
+    )
+)]
+pub async fn send_text(xml: XmlMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json, Infallible> {
+    wechat_api_handler!(wechat, WeChat::send_xml, xml, "发送xml消息")
+}
+
 
 /// 发送图片
 #[utoipa::path(

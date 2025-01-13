@@ -233,7 +233,7 @@ pub fn get_routes(
     #[openapi(
         info(description = "<a href='https://github.com/lich0821/WeChatFerry'>WeChatFerry</a> 一个玩微信的工具。<table align='left'><tbody><tr><td align='center'><img width='160' alt='碲矿' src='https://s2.loli.net/2023/09/25/fub5VAPSa8srwyM.jpg'><div align='center' width='200'>后台回复 <code>WCF</code> 加群交流</div></td><td align='center'><img width='160' alt='赞赏' src='https://s2.loli.net/2023/09/25/gkh9uWZVOxzNPAX.jpg'><div align='center' width='200'>如果你觉得有用</div></td><td width='20%'></td><td width='20%'></td><td width='20%'></td></tr></tbody></table>"),
         paths(is_login, get_self_wxid, get_user_info, get_contacts, get_dbs, get_tables, get_msg_types, save_audio,
-            refresh_pyq, send_text, send_image, send_file, send_rich_text, send_pat_msg, forward_msg, save_image,save_file,
+            refresh_pyq, send_text,send_xml, send_image, send_file, send_rich_text, send_pat_msg, forward_msg, save_image,save_file,
             recv_transfer, query_sql, accept_new_friend, add_chatroom_member, invite_chatroom_member,
             delete_chatroom_member, revoke_msg, query_room_member),
         components(schemas(
@@ -265,6 +265,7 @@ pub fn get_routes(
     build_route_fn!(msgtypes, GET "msg-types", get_msg_types, wechat);
     build_route_fn!(pyq, GET "pyq", refresh_pyq, QUERY Id, wechat);
     build_route_fn!(sendtext, POST "text", send_text, JSON, wechat);
+    build_route_fn!(sendxml, POST "xml", send_xml, JSON, wechat);
     build_route_fn!(sendimage, POST "image", send_image, JSON, wechat);
     build_route_fn!(sendfile, POST "file", send_file, JSON, wechat);
     build_route_fn!(sendrichtext, POST "rich-text", send_rich_text, JSON, wechat);
@@ -293,6 +294,7 @@ pub fn get_routes(
         .or(msgtypes(wechat.clone()))
         .or(pyq(wechat.clone()))
         .or(sendtext(wechat.clone()))
+        .or(sendxml(wechat.clone()))
         .or(sendimage(wechat.clone()))
         .or(sendfile(wechat.clone()))
         .or(sendrichtext(wechat.clone()))
@@ -473,7 +475,7 @@ pub async fn send_text(text: TextMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json
     path = "/xml",
     request_body = XmlMsg,
     responses(
-        (status = 200, body = ApiResponseBool, description = "发送文本消息")
+        (status = 200, body = ApiResponseBool, description = "发送xml消息")
     )
 )]
 pub async fn send_xml(xml: XmlMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json, Infallible> {

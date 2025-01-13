@@ -476,7 +476,7 @@ pub async fn send_text(text: TextMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json
         (status = 200, body = ApiResponseBool, description = "发送文本消息")
     )
 )]
-pub async fn send_text(xml: XmlMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json, Infallible> {
+pub async fn send_xml(xml: XmlMsg, wechat: Arc<Mutex<WeChat>>) -> Result<Json, Infallible> {
     wechat_api_handler!(wechat, WeChat::send_xml, xml, "发送xml消息")
 }
 

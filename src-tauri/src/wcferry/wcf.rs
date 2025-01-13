@@ -199,15 +199,19 @@ pub struct PathMsg {
 pub struct XmlMsg {
     /// 消息接收人
     #[prost(string, tag = "1")]
+    #[schema(example = "消息接收人")]
     pub receiver: ::prost::alloc::string::String,
     /// xml 内容
     #[prost(string, tag = "2")]
+    #[schema(example = "xml 内容")]
     pub content: ::prost::alloc::string::String,
     /// 图片路径
     #[prost(string, tag = "3")]
+    #[schema(example = "图片路径")]
     pub path: ::prost::alloc::string::String,
     /// 消息类型
     #[prost(int32, tag = "4")]
+    #[schema(example = "消息类型")]
     pub r#type: i32,
 }
 #[derive(serde::Serialize, serde::Deserialize, utoipa::ToSchema)]

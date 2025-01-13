@@ -239,7 +239,7 @@ pub fn get_routes(
         components(schemas(
             ApiResponse<bool>, ApiResponse<String>, AttachMsg, AudioMsg, DbNames, DbQuery, DbTable, DbTables,
             DecPath, FieldContent, ForwardMsg, Image, MemberMgmt, MsgTypes, PatMsg, PathMsg, RichText, RpcContact,
-            RpcContacts, TextMsg, Transfer, UserInfo, Verification, ApiResponse<Member>, Member, SelfInfo
+            RpcContacts, TextMsg, Transfer, UserInfo, Verification, ApiResponse<Member>, Member, SelfInfo,XmlMsg
         )),
         tags((name = "WCF", description = "玩微信的接口")),
     )]

@@ -1,8 +1,8 @@
 use crate::wcferry::{
     wcf::{
         AttachMsg, AudioMsg, DbNames, DbQuery, DbTable, DbTables, DecPath, ForwardMsg, MemberMgmt,
-        MsgTypes, PatMsg, PathMsg, RichText, RpcContact, RpcContacts, TextMsg, Transfer, UserInfo,
-        Verification,XmlMsg,
+        MsgTypes, PatMsg, PathMsg, RichText, RpcContact, RpcContacts, TextMsg, XmlMsg, Transfer, UserInfo,
+        Verification,
     },
     SelfInfo, WeChat,
 };
@@ -294,7 +294,7 @@ pub fn get_routes(
         .or(msgtypes(wechat.clone()))
         .or(pyq(wechat.clone()))
         .or(sendtext(wechat.clone()))
-        // .or(sendxml(wechat.clone()))
+        .or(sendxml(wechat.clone()))
         .or(sendimage(wechat.clone()))
         .or(sendfile(wechat.clone()))
         .or(sendrichtext(wechat.clone()))
@@ -304,7 +304,7 @@ pub fn get_routes(
         .or(saveimage(wechat.clone()))
         .or(savefile(wechat.clone()))
         .or(recvtransfer(wechat.clone()))
-        .or(querysql(wechat.clone()))
+        // .or(querysql(wechat.clone()))
         .or(acceptnewfriend(wechat.clone()))
         .or(addchatroommember(wechat.clone()))
         .or(invitechatroommember(wechat.clone()))
